@@ -7,7 +7,7 @@ services:
     env_file:
       - .env
     environment:
-      - DIRECT_URL=postgresql://postgres.upgkvwhkteiektamxuhm:OLdJTb1Ly3bkwzl4@aws-1-us-east-2.pooler.supabase.com:5432/postgres
+      - DIRECT_URL="postgresql://postgres:MqoJtZCzANvEzEDjAKGjxayPfIDqbexQ@mainline.proxy.rlwy.net:43636/railway"
     restart: unless-stopped
 
 # db:
