@@ -126,7 +126,7 @@ npx prisma db push
 npm run dev
 
 # Frontend (outro terminal)
-cd frontend
+cd frontend/provider-management-system
 npm install
 npm run dev
 ```
