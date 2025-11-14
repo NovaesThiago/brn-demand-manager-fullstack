@@ -1,0 +1,21 @@
+
+services:
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    environment:
+      - DIRECT_URL=postgresql://postgres.upgkvwhkteiektamxuhm:OLdJTb1Ly3bkwzl4@aws-1-us-east-2.pooler.supabase.com:5432/postgres
+    restart: unless-stopped
+
+# db:
+#   image: postgres:15
+#   restart: always
+#   environment:
+#     POSTGRES_USER: postgres
+#     POSTGRES_PASSWORD: postgres
+#     POSTGRES_DB: brn_demand_manager
+#   ports:
+#     - '5432:5432'

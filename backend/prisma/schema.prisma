@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Provider {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String   @unique
+  contact     String?  // ADICIONAR (opcional)
+  responsible String?  // ADICIONAR (opcional)
+  createdAt   DateTime @default(now())
+  demands     Demand[]
+}
+
+model Demand {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  type        DemandType   // ADICIONAR
+  status      DemandStatus // ADICIONAR  
+  providerId  Int
+  createdAt   DateTime @default(now())
+  actions     Action[]
+  provider    Provider @relation(fields: [providerId], references: [id])
+}
+
+model Action {
+  id        Int      @id @default(autoincrement())
+  label     String
+  technician String  // ADICIONAR (nome do técnico)
+  done      Boolean  @default(false)
+  demandId  Int
+  createdAt DateTime @default(now())
+  demand    Demand   @relation(fields: [demandId], references: [id])
+}
+
+enum DemandType {
+  DIAGNOSTICO
+  MANUTENCAO
+  CONFIGURACAO
+  INSTALACAO
+  OUTRO
+}
+
+enum DemandStatus {
+  PENDENTE
+  EM_ANDAMENTO
+  CONCLUIDA
+  CANCELADA
+}
